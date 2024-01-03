@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const topicSchema = new Schema(
   {
     title: String,
-    desciprtion: String,
+    description: String,
   },
   {
     timestamps: true,
