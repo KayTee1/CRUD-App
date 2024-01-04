@@ -1,26 +1,41 @@
 import React from "react";
-import RemoveBtn from "./RemoveBtn";
-import Link from "next/link";
+import SingleTopicCard from "./SingleTopicCard";
 
-import { HiPencilAlt } from "react-icons/hi";
-const TopicsList = () => {
-  return (
-    <>
-      <div className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start">
-        <div>
-          <h2 className="font-bold text-2xl">Topic Title</h2>
-          <div>Topic Description</div>
-        </div>
+import { baseUrl } from "@/utils/getBaseUrl";
 
-        <div className="flex gap-2">
-          <RemoveBtn />
-          <Link href={"/EditTopic/123"}>
-            <HiPencilAlt size={24} />
-          </Link>
-        </div>
-      </div>
-    </>
-  );
+const getTopics = async () => {
+  try {
+    const url = baseUrl + "api/topics";
+    const res = await fetch(url, { cache: "no-store" });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch topics");
+    }
+
+    return res.json();
+
+  } catch (error) {
+    console.error("Error fetching topics: ", error);
+  }
 };
 
-export default TopicsList;
+type Topic = {
+  _id: string;
+  title: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+export default async function TopicsList() {
+  const { topics } = await getTopics();
+
+  return (
+    <>
+      {topics.map((topic: Topic, index: number) => (
+        <SingleTopicCard key={index} topic={topic} />
+      ))}
+    </>
+  );
+}
