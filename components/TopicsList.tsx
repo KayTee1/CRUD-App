@@ -5,15 +5,13 @@ import { baseUrl } from "@/utils/getBaseUrl";
 
 const getTopics = async () => {
   try {
-    const url = baseUrl + "api/topics";
-    const res = await fetch(url, { cache: "no-store" });
+    const res = await fetch(baseUrl, { cache: "no-store" });
 
     if (!res.ok) {
       throw new Error("Failed to fetch topics");
     }
 
     return res.json();
-
   } catch (error) {
     console.error("Error fetching topics: ", error);
   }

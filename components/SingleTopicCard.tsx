@@ -23,7 +23,7 @@ const SingleTopicCard = ({ topic }: { topic: Topic }) => {
       </div>
 
       <div className="flex gap-2">
-        <RemoveBtn />
+        <RemoveBtn id={_id} />
         <Link href={`/EditTopic/${_id}`}>
           <HiPencilAlt size={24} />
         </Link>
