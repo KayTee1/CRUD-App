@@ -18,7 +18,7 @@ This project is a simple CRUD (Create, Read, Update, Delete) application built w
 
 ## Screenshots
 
-Include screenshots or other visuals of your project here.
+- Screenshots
 
 - ![Screenshot 1](public/screenshot1.png)
 - ![Screenshot 2](public/screenshot2.png)

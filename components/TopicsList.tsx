@@ -27,7 +27,7 @@ type Topic = {
 };
 
 export default async function TopicsList() {
-  const { topics } = await getTopics();
+  const { topics } = await getTopics() || { topics: [] };
 
   return (
     <>
