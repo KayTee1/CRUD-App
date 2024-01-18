@@ -27,13 +27,17 @@ type Topic = {
 };
 
 export default async function TopicsList() {
-  const { topics } = await getTopics() || { topics: [] };
+  const { topics } = (await getTopics()) || { topics: [] };
 
   return (
     <>
-      {topics.map((topic: Topic, index: number) => (
-        <SingleTopicCard key={index} topic={topic} />
-      ))}
+      {topics.length === 0 ? (
+        <p>No Topics Yet!</p>
+      ) : (
+        topics.map((topic: Topic, index: number) => (
+          <SingleTopicCard key={index} topic={topic} />
+        ))
+      )}
     </>
   );
 }
